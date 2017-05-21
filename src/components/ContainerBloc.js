@@ -1,44 +1,42 @@
 import React from 'react';
 
+import WeatherBloc from './WeatherBloc';
+import AddWeather from './AddWeather';
+
+
 class ContainerBloc extends React.Component{
 	
     constructor() {
         super();
         this.state = { 
-			weather : [ {city:"new york", temp:"200"} ]
+			weather : []
 		}
     }
+ 
+	// Ajoute les données de la ville au state
+	addCity = (city) => {
+        fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=a34bcd3cecfa10f366f8415e8201f435`)
+		.then((response) => response.json())
+		.then((data) => { 
+			console.log(data);				
+				this.setState((prevState, props) => ({
+				weather: prevState.weather.concat({city:data.name, temp:data.main.temp})
+			}));
+		})	        
+		.catch((error) => {
+			console.error(error);
+		});
+    }
 
-
-  	componentDidMount() { 
-	    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${this.props.city}&appid=a34bcd3cecfa10f366f8415e8201f435`)
-	        .then((response) => response.json())
-	        .then((data) => { 
-	            console.log(data);
-				 
-				 this.setState((prevState, props) => ({
-					weather: prevState.weather.concat({city:data.name, temp:data.main.temp})
-				}));
-	        })	        
-	        .catch((error) => {
-	            console.error(error);
-	        });
- 	}
-	 
-	 
 	render(){
-		const listWeather = this.state.weather.map( (establishment) => {
-            return (
-                <div>
-					<p className="city">Ville : {establishment.city}</p>
-					<p className="temp">Température : {establishment.temp}</p>
-				</div>
-            )
-        })
-
 		return(
 			<div>				
-				{ listWeather }
+				{
+					this.state.weather.map((elem, i) => {
+						return <WeatherBloc key={i} city={elem.city} temp={elem.temp} />
+					})
+				}
+				<AddWeather onSbmt={this.addCity} />
 			</div>
 		)
 	}

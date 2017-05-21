@@ -1,11 +1,10 @@
-// REACT
 import React, { Component } from 'react';
 
-// Components 
 import ContainerBloc from './ContainerBloc';
 
 import logo from '../logo.svg';
 import '../css/App.css';
+import '../css/bootstrap.min.css';
 
 class App extends Component {
 
