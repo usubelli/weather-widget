@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
+import logo from '../logo.svg';
+
 import ContainerBloc from './ContainerBloc';
 
-import logo from '../logo.svg';
-import '../css/App.css';
-import '../css/bootstrap.min.css';
+
 
 class App extends Component {
 
@@ -16,7 +16,7 @@ class App extends Component {
                <img src={logo} className="App-logo" alt="logo" />
                <h2>Welcome to weather widget</h2>
             </div> 
-            <ContainerBloc city={"paris"} />
+            <ContainerBloc />
         </div>
     );
 

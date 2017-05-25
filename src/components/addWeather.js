@@ -1,11 +1,14 @@
 import React from 'react';
 
+
 class AddWeather extends React.Component {
 
     submitForm = e => {
         e.preventDefault();
-        this.props.onSbmt(this.cityInput.value);
-        this.cityInput.value = "";  
+        if(this.cityInput.value) {
+            this.props.onSbmt(this.cityInput.value);
+            this.cityInput.value = "";  
+        }
     }
 
     render() {
@@ -20,3 +23,7 @@ class AddWeather extends React.Component {
 }
 
 export default AddWeather;
+
+
+
+// AIzaSyC-lQvKOJLQIPBevBdTVQK6qtSNNiEDSag 
