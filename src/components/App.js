@@ -1,27 +1,31 @@
+// MODULES
 import React, { Component } from 'react';
+import { Switch,Route } from 'react-router-dom';
+// COMPONENTS
+import Header from './Header'; 
+// PAGES
+import Settings from '../pages/Settings';
+import Home from '../pages/Home';
+// IMAGES
+import logo from '../img/logo.svg';
+ 
 
-import logo from '../logo.svg';
 
-import ContainerBloc from './ContainerBloc';
-
-
-
-class App extends Component {
+class App extends React.Component {
 
   render() {
-
     return (
-        <div className="App">
-            <div className="App-header">
-               <img src={logo} className="App-logo" alt="logo" />
-               <h2>Welcome to weather widget</h2>
-            </div> 
-            <ContainerBloc />
+        <div>
+            <Header />
+            <main>
+              <Switch>
+                <Route exact path='/' component={Home}/>
+                <Route path='/settings' component={Settings}/> 
+              </Switch>
+            </main>
         </div>
     );
-
   }
-
 }
 
 export default App;
