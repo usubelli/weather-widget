@@ -63,7 +63,7 @@ class AddWeather extends React.Component {
                 <ul id="tag-id">
                     {
                         this.state.city.map((city, i) => {
-                          
+                            if ( i < 5 )
                                 return <li onClick={(e) => this.changeInput(e)} >{city.matching_full_name}</li>
                              
                         })
